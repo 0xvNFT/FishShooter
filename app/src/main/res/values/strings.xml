@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">FishShooter</string>
+    <string name="loading">LOADING…</string>
+</resources>
