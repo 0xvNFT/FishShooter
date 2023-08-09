@@ -13,8 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
     FishView fishView;
     private FishManager fishManager;
-    private int screenWidth;
-    private int screenHeight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        screenWidth = displayMetrics.widthPixels;
-        screenHeight = displayMetrics.heightPixels;
+        int screenWidth = displayMetrics.widthPixels;
+        int screenHeight = displayMetrics.heightPixels;
 
         Bitmap[] fishSprites = loadFishSprites();
         fishView = findViewById(R.id.fishView);
@@ -87,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 fishManager.updateAll();
+                fishView.updateBullet();
                 fishView.invalidate();
                 handler.postDelayed(this, 16);
             }

@@ -13,11 +13,16 @@ public class FishView extends View {
     private FishManager fishManager;
     private final Crosshair crosshair;
     private boolean isCrosshairVisible;
+    private final Bullet bullet;
+    private float releaseTouchX;
+    private float releaseTouchY;
 
     public FishView(Context context, AttributeSet attrs) {
         super(context, attrs);
         isCrosshairVisible = false;
         crosshair = new Crosshair(BitmapFactory.decodeResource(getResources(), R.drawable.crosshair));
+        bullet = new Bullet(BitmapFactory.decodeResource(getResources(), R.drawable.bullet));
+
     }
 
     public void setFishManager(FishManager fishManager) {
@@ -33,6 +38,9 @@ public class FishView extends View {
         canvas.drawColor(Color.TRANSPARENT);
         if (isCrosshairVisible) {
             crosshair.draw(canvas);
+        }
+        if (bullet != null) {
+            bullet.draw(canvas);
         }
     }
 
@@ -51,12 +59,30 @@ public class FishView extends View {
                 break;
             case MotionEvent.ACTION_UP:
                 isCrosshairVisible = false;
+                releaseTouchX = event.getX();
+                releaseTouchY = event.getY();
+
+                if (bullet != null) {
+                    float bulletStartX = getWidth() / 2;
+                    float bulletStartY = getHeight();
+                    float bulletSpeedY = 10;
+
+                    float bulletSpeedX = (releaseTouchX - bulletStartX) * bulletSpeedY / (bulletStartY - releaseTouchY);
+
+                    bullet.activate(bulletStartX, bulletStartY, bulletSpeedX, bulletSpeedY);
+                }
                 performClick();
                 invalidate();
                 break;
         }
 
         return true;
+    }
+
+    public void updateBullet() {
+        if (bullet != null) {
+            bullet.update();
+        }
     }
 
     @Override
