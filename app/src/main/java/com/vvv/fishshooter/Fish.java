@@ -12,6 +12,7 @@ public class Fish {
     private float speedX, speedY;
     private final int screenWidth;
     private final int screenHeight;
+    public boolean isActive;
 
     public Fish(Bitmap fishSprite, float startX, float startY, float initialSpeedX, float initialSpeedY,
                 int screenWidth, int screenHeight) {
@@ -22,6 +23,7 @@ public class Fish {
         this.speedY = initialSpeedY;
         this.screenWidth = screenWidth;
         this.screenHeight = screenHeight;
+        this.isActive = true;
 
         Random random = new Random();
         speedX = initialSpeedX * (random.nextFloat() + 0.5f);
@@ -43,10 +45,26 @@ public class Fish {
         }
     }
 
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean isActive) {
+        this.isActive = isActive;
+    }
 
     public void draw(Canvas canvas) {
         canvas.drawBitmap(fishSprite, x, y, null);
-
     }
+
+    public boolean isHit(float bulletX, float bulletY) {
+        float fishLeft = x - fishSprite.getWidth() / 2;
+        float fishRight = x + fishSprite.getWidth() / 2;
+        float fishTop = y - fishSprite.getHeight() / 2;
+        float fishBottom = y + fishSprite.getHeight() / 2;
+
+        return bulletX >= fishLeft && bulletX <= fishRight && bulletY >= fishTop && bulletY <= fishBottom;
+    }
+
 }
 

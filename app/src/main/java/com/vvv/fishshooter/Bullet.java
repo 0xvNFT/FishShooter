@@ -42,5 +42,13 @@ public class Bullet {
     public boolean isActive() {
         return isActive;
     }
+
+    public float getX() {
+        return x;
+    }
+
+    public float getY() {
+        return y;
+    }
 }
 

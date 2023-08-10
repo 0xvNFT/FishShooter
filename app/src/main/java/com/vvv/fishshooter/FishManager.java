@@ -23,5 +23,23 @@ public class FishManager {
             fish.draw(canvas);
         }
     }
+
+    public void checkBulletCollisions(Bullet bullet) {
+        for (Fish fish : fishes) {
+            if (fish.isHit(bullet.getX(), bullet.getY())) {
+                fish.setActive(false);
+            }
+        }
+    }
+
+    public void removeInactiveFish() {
+        List<Fish> inactiveFish = new ArrayList<>();
+        for (Fish fish : fishes) {
+            if (!fish.isActive()) {
+                inactiveFish.add(fish);
+            }
+        }
+        fishes.removeAll(inactiveFish);
+    }
 }
 

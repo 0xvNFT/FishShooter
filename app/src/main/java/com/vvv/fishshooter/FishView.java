@@ -43,7 +43,6 @@ public class FishView extends View {
             bullet.draw(canvas);
         }
     }
-
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         int action = event.getAction();
@@ -75,19 +74,19 @@ public class FishView extends View {
                 invalidate();
                 break;
         }
-
         return true;
     }
-
     public void updateBullet() {
         if (bullet != null) {
             bullet.update();
+            fishManager.checkBulletCollisions(bullet);
+            fishManager.removeInactiveFish();
         }
     }
-
     @Override
     public boolean performClick() {
         Log.d("FishView", "Performing click");
         return super.performClick();
     }
+
 }
