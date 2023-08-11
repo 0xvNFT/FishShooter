@@ -17,7 +17,14 @@
             android:name=".MainActivity"
             android:exported="false"
             android:screenOrientation="landscape" />
-
+        <activity
+            android:name=".MenuActivity"
+            android:exported="false"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".SupportActivity"
+            android:exported="false"
+            android:screenOrientation="landscape" />
         <activity
             android:name=".SplashActivity"
             android:exported="true"

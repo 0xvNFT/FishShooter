@@ -6,7 +6,6 @@ import android.graphics.Canvas;
 import java.util.Random;
 
 public class Fish {
-    public int currentSpriteIndex;
     private final Bitmap fishSprite;
     private float x, y;
     private float speedX, speedY;

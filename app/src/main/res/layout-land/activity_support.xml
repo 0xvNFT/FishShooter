@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gamedark_bg"
+    tools:ignore="MissingDefaultResource">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <ImageView
+            android:id="@+id/fb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:src="@drawable/fb"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/zl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/fb"
+            android:padding="20dp"
+            android:src="@drawable/zl"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/tg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/fb"
+            android:padding="20dp"
+            android:src="@drawable/tg"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/mg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/zl"
+            android:layout_toEndOf="@id/tg"
+            android:padding="20dp"
+            android:src="@drawable/mg"
+            tools:ignore="ContentDescription" />
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

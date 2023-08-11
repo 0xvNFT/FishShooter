@@ -7,7 +7,6 @@ import java.util.List;
 
 public class FishManager {
     private final List<Fish> fishes = new ArrayList<>();
-
     public void addFish(Fish fish) {
         fishes.add(fish);
     }
@@ -32,7 +31,6 @@ public class FishManager {
             }
         }
     }
-
     public void removeInactiveFish() {
         List<Fish> inactiveFish = new ArrayList<>();
         for (Fish fish : fishes) {
