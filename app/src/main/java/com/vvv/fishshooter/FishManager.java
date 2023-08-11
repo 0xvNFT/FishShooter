@@ -28,6 +28,7 @@ public class FishManager {
         for (Fish fish : fishes) {
             if (fish.isHit(bullet.getX(), bullet.getY())) {
                 fish.setActive(false);
+                bullet.setActive(false);
             }
         }
     }

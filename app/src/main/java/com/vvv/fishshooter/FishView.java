@@ -39,7 +39,7 @@ public class FishView extends View {
         if (isCrosshairVisible) {
             crosshair.draw(canvas);
         }
-        if (bullet != null) {
+        if (bullet != null && bullet.isActive()) {
             bullet.draw(canvas);
         }
     }

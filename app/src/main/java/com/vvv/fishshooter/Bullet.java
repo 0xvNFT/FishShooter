@@ -50,5 +50,9 @@ public class Bullet {
     public float getY() {
         return y;
     }
+
+    public void setActive(boolean b) {
+        isActive = b;
+    }
 }
 
