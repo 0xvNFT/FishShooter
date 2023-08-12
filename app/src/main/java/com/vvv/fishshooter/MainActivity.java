@@ -12,6 +12,8 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity {
     FishView fishView;
     private FishManager fishManager;
@@ -44,43 +46,20 @@ public class MainActivity extends AppCompatActivity {
         Bitmap[] fishSprites = loadFishSprites();
         fishView = findViewById(R.id.fishView);
 
-        fishManager = new FishManager();
-        float startX1 = 605;
-        float startY1 = (float) screenHeight / 2;
-        float initialSpeedX1 = 2;
-        float initialSpeedY1 = 0;
+        fishManager = new FishManager(fishSprites, screenWidth, screenHeight);
+        Random random = new Random();
 
-        float startX2 = 365;
-        float startY2 = (float) screenHeight / 2;
-        float initialSpeedX2 = 3;
-        float initialSpeedY2 = 1;
+        for (int i = 0; i < 6; i++) {
+            float initialSpeedX = 3;
+            float initialSpeedY = 1;
+            float fishWidth = fishSprites[i].getWidth();
+            float fishHeight = fishSprites[i].getHeight();
 
-        float startX3 = 800;
-        float startY3 = (float) screenHeight / 2;
-        float initialSpeedX3 = 3;
-        float initialSpeedY3 = 1;
+            float startX = random.nextInt(screenWidth - (int) fishWidth);
+            float startY = random.nextInt(screenHeight - (int) fishHeight);
 
-        float startX4 = 752;
-        float startY4 = (float) screenHeight / 2;
-        float initialSpeedX4 = 3;
-        float initialSpeedY4 = 1;
-
-        float startX5 = 632;
-        float startY5 = (float) screenHeight / 2;
-        float initialSpeedX5 = 3;
-        float initialSpeedY5 = 1;
-
-        float startX6 = 245;
-        float startY6 = (float) screenHeight / 2;
-        float initialSpeedX6 = 3;
-        float initialSpeedY6 = 1;
-
-        fishManager.addFish(new Fish(fishSprites[0], startX1, startY1, initialSpeedX1, initialSpeedY1, screenWidth, screenHeight));
-        fishManager.addFish(new Fish(fishSprites[1], startX2, startY2, initialSpeedX2, initialSpeedY2, screenWidth, screenHeight));
-        fishManager.addFish(new Fish(fishSprites[2], startX3, startY3, initialSpeedX3, initialSpeedY3, screenWidth, screenHeight));
-        fishManager.addFish(new Fish(fishSprites[3], startX4, startY4, initialSpeedX4, initialSpeedY4, screenWidth, screenHeight));
-        fishManager.addFish(new Fish(fishSprites[4], startX5, startY5, initialSpeedX5, initialSpeedY5, screenWidth, screenHeight));
-        fishManager.addFish(new Fish(fishSprites[5], startX6, startY6, initialSpeedX6, initialSpeedY6, screenWidth, screenHeight));
+            fishManager.addFish(new Fish(fishSprites[i], startX, startY, initialSpeedX, initialSpeedY, screenWidth, screenHeight));
+        }
 
         fishView.setFishManager(fishManager);
         startAnimationLoop();
