@@ -16,6 +16,8 @@ public class FishView extends View {
     private final Bullet bullet;
     private float releaseTouchX;
     private float releaseTouchY;
+    private int score = 0;
+
 
     public FishView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -27,6 +29,10 @@ public class FishView extends View {
 
     public void setFishManager(FishManager fishManager) {
         this.fishManager = fishManager;
+    }
+
+    public void updateScore(int newScore) {
+        score = newScore;
     }
 
     @Override

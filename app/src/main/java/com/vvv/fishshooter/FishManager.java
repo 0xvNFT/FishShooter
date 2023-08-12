@@ -18,6 +18,8 @@ public class FishManager {
     private final int screenHeight;
     private long respawnInterval = 5000;
     private long lastRespawnTime = 0;
+    private int score = 0;
+
 
     public FishManager(Bitmap[] fishSprites, int screenWidth, int screenHeight) {
         this.fishSprites = fishSprites;
@@ -67,8 +69,17 @@ public class FishManager {
             if (fish.isHit(bullet.getX(), bullet.getY())) {
                 fish.setActive(false);
                 bullet.setActive(false);
+                increaseScore();
             }
         }
+    }
+
+    private void increaseScore() {
+        score++;
+    }
+
+    public int getScore() {
+        return score;
     }
 
     public void removeInactiveFish() {

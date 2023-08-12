@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,6 +18,7 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
     FishView fishView;
     private FishManager fishManager;
+    public TextView scoreText; // Declare TextView variable
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_main);
+        scoreText = findViewById(R.id.scoreText);
 
         ImageView menu = findViewById(R.id.menu);
         menu.setOnClickListener(v -> {
@@ -79,11 +82,18 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 fishManager.updateAll();
                 fishView.updateBullet();
+                //fishView.updateScore(fishManager.getScore());
+                updateScoreTextView(fishManager.getScore());
+
                 fishView.invalidate();
                 handler.postDelayed(this, 16);
             }
         };
         handler.post(animationRunnable);
+    }
+
+    private void updateScoreTextView(int score) {
+        scoreText.setText("Score: " + score);
     }
 
 
