@@ -26,6 +26,10 @@
             android:exported="false"
             android:screenOrientation="landscape" />
         <activity
+            android:name=".ContactActivity"
+            android:exported="false"
+            android:screenOrientation="landscape" />
+        <activity
             android:name=".SplashActivity"
             android:exported="true"
             android:screenOrientation="landscape">

@@ -38,6 +38,12 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        ImageView contact = findViewById(R.id.contact);
+        contact.setOnClickListener(v -> {
+            Intent intent = new Intent(this, ContactActivity.class);
+            startActivity(intent);
+        });
+
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         int screenWidth = displayMetrics.widthPixels;
