@@ -3,8 +3,6 @@ package com.vvv.fishshooter;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
-import java.util.Random;
-
 public class Fish {
     private final Bitmap fishSprite;
     private float x, y;
@@ -24,22 +22,31 @@ public class Fish {
         this.screenHeight = screenHeight;
         this.isActive = true;
 
-        Random random = new Random();
-        speedX = initialSpeedX * (random.nextFloat() + 0.5f);
-        speedY = initialSpeedY * (random.nextFloat() + 0.5f);
+        if (x < (float) fishSprite.getWidth() / 2) {
+            x = (float) fishSprite.getWidth() / 2;
+        } else if (x > screenWidth - (float) fishSprite.getWidth() / 2) {
+            x = screenWidth - (float) fishSprite.getWidth() / 2;
+        }
 
-        x = random.nextInt(screenWidth);
-        y = random.nextInt(screenHeight);
+        if (y < (float) fishSprite.getHeight() / 2) {
+            y = (float) fishSprite.getHeight() / 2;
+        } else if (y > screenHeight - (float) fishSprite.getHeight() / 2) {
+            y = screenHeight - (float) fishSprite.getHeight() / 2;
+        }
+
+        speedX = initialSpeedX;
+        speedY = initialSpeedY;
     }
 
     public void update() {
         x += speedX;
         y += speedY;
 
-        if (x < 0 || x + fishSprite.getWidth() > screenWidth) {
+        if (x < (float) fishSprite.getWidth() / 2 || x > screenWidth - (float) fishSprite.getWidth() / 2) {
             speedX = -speedX;
         }
-        if (y < 0 || y + fishSprite.getHeight() > screenHeight) {
+
+        if (y < (float) fishSprite.getHeight() / 2 || y > screenHeight - (float) fishSprite.getHeight() / 2) {
             speedY = -speedY;
         }
     }
