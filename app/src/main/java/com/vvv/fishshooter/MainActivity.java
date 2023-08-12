@@ -18,7 +18,7 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
     FishView fishView;
     private FishManager fishManager;
-    public TextView scoreText; // Declare TextView variable
+    public TextView scoreText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
