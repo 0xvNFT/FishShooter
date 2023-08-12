@@ -77,10 +77,15 @@ public class FishView extends View {
         return true;
     }
     public void updateBullet() {
-        if (bullet != null) {
+        if (bullet != null && bullet.isActive()) {
             bullet.update();
             fishManager.checkBulletCollisions(bullet);
             fishManager.removeInactiveFish();
+
+            if (!bullet.isActive()) {
+                releaseTouchX = 0;
+                releaseTouchY = 0;
+            }
         }
     }
     @Override

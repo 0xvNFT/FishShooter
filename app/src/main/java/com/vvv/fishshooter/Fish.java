@@ -57,10 +57,10 @@ public class Fish {
     }
 
     public boolean isHit(float bulletX, float bulletY) {
-        float fishLeft = x - fishSprite.getWidth() / 2;
-        float fishRight = x + fishSprite.getWidth() / 2;
-        float fishTop = y - fishSprite.getHeight() / 2;
-        float fishBottom = y + fishSprite.getHeight() / 2;
+        float fishLeft = x - (float) fishSprite.getWidth() / 2;
+        float fishRight = x + (float) fishSprite.getWidth() / 2;
+        float fishTop = y - (float) fishSprite.getHeight() / 2;
+        float fishBottom = y + (float) fishSprite.getHeight() / 2;
 
         return bulletX >= fishLeft && bulletX <= fishRight && bulletY >= fishTop && bulletY <= fishBottom;
     }
