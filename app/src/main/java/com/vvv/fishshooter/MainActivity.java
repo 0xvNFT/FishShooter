@@ -58,17 +58,18 @@ public class MainActivity extends AppCompatActivity {
         fishManager = new FishManager(fishSprites, screenWidth, screenHeight);
         Random random = new Random();
 
-        for (int i = 0; i < 6; i++) {
-            float initialSpeedX = 3;
-            float initialSpeedY = 1;
-            float fishWidth = fishSprites[i].getWidth();
-            float fishHeight = fishSprites[i].getHeight();
-
-            float startX = random.nextInt(screenWidth - (int) fishWidth);
-            float startY = random.nextInt(screenHeight - (int) fishHeight);
-
-            fishManager.addFish(new Fish(fishSprites[i], startX, startY, initialSpeedX, initialSpeedY, screenWidth, screenHeight));
-        }
+        //use if want to start with many fish
+//        for (int i = 0; i < 6; i++) {
+//            float initialSpeedX = 3;
+//            float initialSpeedY = 1;
+//            float fishWidth = fishSprites[i].getWidth();
+//            float fishHeight = fishSprites[i].getHeight();
+//
+//            float startX = random.nextInt(screenWidth - (int) fishWidth);
+//            float startY = random.nextInt(screenHeight - (int) fishHeight);
+//
+//            fishManager.addFish(new Fish(fishSprites[i], startX, startY, initialSpeedX, initialSpeedY, screenWidth, screenHeight));
+//        }
 
         fishView.setFishManager(fishManager);
         startAnimationLoop();

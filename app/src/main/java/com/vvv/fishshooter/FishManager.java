@@ -10,14 +10,14 @@ import java.util.Random;
 
 public class FishManager {
     private final List<Fish> fishes = new ArrayList<>();
-    private static final int MAX_FISH_COUNT = 10;
+    private static final int MAX_FISH_COUNT = 6;
     private static final float INITIAL_FISH_SPEED_X = 5.0f;
     private static final float INITIAL_FISH_SPEED_Y = 5.0f;
     private final Random random = new Random();
     private final Bitmap[] fishSprites;
     private final int screenWidth;
     private final int screenHeight;
-    private long respawnInterval = 5000;
+    private long respawnInterval = 2000;
     private long lastRespawnTime = 0;
     private int score = 0;
 
