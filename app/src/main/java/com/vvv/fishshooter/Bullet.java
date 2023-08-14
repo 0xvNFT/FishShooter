@@ -9,6 +9,8 @@ public class Bullet {
     private float speedX;
     private float speedY;
     private boolean isActive;
+    private float rotationAngle;
+
 
     public Bullet(Bitmap bulletBitmap) {
         this.bulletBitmap = bulletBitmap;
@@ -53,6 +55,16 @@ public class Bullet {
 
     public void setActive(boolean b) {
         isActive = b;
+    }
+
+    public void updateRotation(float targetX, float targetY) {
+        float deltaX = targetX - x;
+        float deltaY = targetY - y;
+        rotationAngle = (float) Math.toDegrees(Math.atan2(deltaY, deltaX)) + 90;
+    }
+
+    public float getRotationAngle() {
+        return rotationAngle;
     }
 }
 

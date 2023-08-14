@@ -17,11 +17,13 @@ public class FishView extends View {
     private float releaseTouchX;
     private float releaseTouchY;
     private int score = 0;
+    private boolean isBulletActive;
 
 
     public FishView(Context context, AttributeSet attrs) {
         super(context, attrs);
         isCrosshairVisible = false;
+        isBulletActive = false;
         crosshair = new Crosshair(BitmapFactory.decodeResource(getResources(), R.drawable.crosshair));
         bullet = new Bullet(BitmapFactory.decodeResource(getResources(), R.drawable.bullet));
 
@@ -46,11 +48,21 @@ public class FishView extends View {
             crosshair.draw(canvas);
         }
         if (bullet != null && bullet.isActive()) {
+            float rotationPivotX = bullet.getX();
+            float rotationPivotY = bullet.getY();
+            float rotationAngle = bullet.getRotationAngle();
+
+            canvas.save();
+            canvas.rotate(rotationAngle, rotationPivotX, rotationPivotY);
             bullet.draw(canvas);
+            canvas.restore();
         }
     }
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        if (isBulletActive) {
+            return true;
+        }
         int action = event.getAction();
         float touchX = event.getX();
         float touchY = event.getY();
@@ -60,6 +72,9 @@ public class FishView extends View {
             case MotionEvent.ACTION_MOVE:
                 isCrosshairVisible = true;
                 crosshair.updatePosition(touchX, touchY);
+//                if (bullet != null && bullet.isActive()) {
+//                    bullet.updateRotation(touchX, touchY);
+//                }
                 invalidate();
                 break;
             case MotionEvent.ACTION_UP:
@@ -75,6 +90,9 @@ public class FishView extends View {
                     float bulletSpeedX = (releaseTouchX - bulletStartX) * bulletSpeedY / (bulletStartY - releaseTouchY);
 
                     bullet.activate(bulletStartX, bulletStartY, bulletSpeedX, bulletSpeedY);
+                    bullet.updateRotation(releaseTouchX, releaseTouchY);
+                    isBulletActive = true;
+
                 }
                 performClick();
                 invalidate();
@@ -89,6 +107,7 @@ public class FishView extends View {
             fishManager.removeInactiveFish();
 
             if (!bullet.isActive()) {
+                isBulletActive = false;
                 releaseTouchX = 0;
                 releaseTouchY = 0;
             }
