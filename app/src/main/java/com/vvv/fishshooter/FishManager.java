@@ -2,6 +2,7 @@ package com.vvv.fishshooter;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,15 +55,33 @@ public class FishManager {
 
     private void respawnFish() {
         if (fishes.size() < MAX_FISH_COUNT) {
-            float startX = random.nextInt(screenWidth);
+            float startX;
             float startY = random.nextInt(screenHeight);
             float initialSpeedX = (random.nextFloat() + 0.5f) * INITIAL_FISH_SPEED_X;
             float initialSpeedY = (random.nextFloat() + 0.5f) * INITIAL_FISH_SPEED_Y;
+            Bitmap fishSprite;
 
-            Fish newFish = new Fish(fishSprites[random.nextInt(fishSprites.length)], startX, startY, initialSpeedX, initialSpeedY, screenWidth, screenHeight);
+            if (random.nextBoolean()) {
+
+                fishSprite = fishSprites[random.nextInt(fishSprites.length)];
+                startX = -fishSprite.getWidth();
+                Matrix matrix = new Matrix();
+                matrix.preScale(-1.0f, 1.0f);
+                fishSprite = Bitmap.createBitmap(fishSprite, 0, 0, fishSprite.getWidth(), fishSprite.getHeight(), matrix, true);
+            } else {
+
+                fishSprite = fishSprites[random.nextInt(fishSprites.length)];
+                startX = screenWidth;
+                Matrix matrix = new Matrix();
+                matrix.preScale(1.0f, 1.0f);
+                fishSprite = Bitmap.createBitmap(fishSprite, 0, 0, fishSprite.getWidth(), fishSprite.getHeight(), matrix, true);
+            }
+
+            Fish newFish = new Fish(fishSprite, startX, startY, initialSpeedX, initialSpeedY, screenWidth, screenHeight);
             addFish(newFish);
         }
     }
+
 
     public void checkBulletCollisions(Bullet bullet) {
         for (Fish fish : fishes) {
